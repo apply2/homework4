@@ -5,17 +5,12 @@
  * 이름:
  *
  * ─────────────────────────────────────────────────────────────
- * BankAccount class 의 TODO 함수를 구현하세요.
+ * 아래 class 선언을 참고하여 각 member function 을 class 외부에서 구현하세요.
  *
- *  setBalance(balance) : this->balance 를 사용하여 balance 를 설정합니다.
- *  deposit(amount)     : amount > 0 이면 balance 에 더하고 true 반환.
- *                        amount <= 0 이면 아무것도 하지 않고 false 반환.
- *  withdraw(amount)    : amount > 0 이고 amount <= balance 이면
- *                        balance 에서 빼고 true 반환.
- *                        그 외에는 아무것도 하지 않고 false 반환.
- *  getBalance()        : balance 를 반환합니다. (const 필수)
+ *  - 잘못된 입력은 exception 대신 bool 반환값으로 처리합니다.
+ *  - class 선언부는 수정하지 마세요.
  *
- * 주의: exception 은 사용하지 말고 bool 반환값으로 처리하세요.
+ * runner 함수(runProblem2)는 수정하지 마세요.
  * ─────────────────────────────────────────────────────────────
  */
 #include <iostream>
@@ -25,41 +20,30 @@ class BankAccount {
 private:
     int balance;
 public:
-    // TODO: this->balance 를 사용하여 balance 를 설정하세요.
+    // balance 를 설정합니다.
     void setBalance(int balance);
 
-    // TODO: amount > 0 이면 balance 에 더하고 true 를 반환하세요.
-    //       amount <= 0 이면 아무것도 하지 않고 false 를 반환하세요.
+    // amount > 0 이면 balance 에 더하고 true 를 반환합니다.
+    // amount <= 0 이면 아무것도 하지 않고 false 를 반환합니다.
     bool deposit(int amount);
 
-    // TODO: amount > 0 이고 amount <= balance 이면 balance 에서 빼고 true 를 반환하세요.
-    //       그 외에는 아무것도 하지 않고 false 를 반환하세요.
+    // amount > 0 이고 amount <= balance 이면 balance 에서 빼고 true 를 반환합니다.
+    // 그 외에는 아무것도 하지 않고 false 를 반환합니다.
     bool withdraw(int amount);
 
-    // TODO: balance 를 반환하세요. (const 필수)
+    // 현재 balance 를 반환합니다.
     int getBalance() const;
 };
 
-void BankAccount::setBalance(int balance) {
-    // TODO: this->balance 를 반드시 사용하세요.
-}
+// TODO: setBalance 를 구현하세요.
 
-bool BankAccount::deposit(int amount) {
-    // TODO
-    return false;
-}
+// TODO: deposit 를 구현하세요.
 
-bool BankAccount::withdraw(int amount) {
-    // TODO
-    return false;
-}
+// TODO: withdraw 를 구현하세요.
 
-int BankAccount::getBalance() const {
-    // TODO
-    return 0;
-}
+// TODO: getBalance 를 구현하세요.
 
-// ── runner (수정하지 마세요) ───────────────────────────────────────────
+// ── runner (수정하지 마세요) ───────────────────────────────────
 void runProblem2(istream& in) {
     int initialBalance, depositAmount, badDepositAmount, withdrawAmount, badWithdrawAmount;
     in >> initialBalance >> depositAmount >> badDepositAmount
@@ -93,3 +77,4 @@ void runProblem2(istream& in) {
     cout << "result = " << (r ? "true" : "false") << "\n";
     cout << "balance = " << acc.getBalance() << "\n";
 }
+// ─────────────────────────────────────────────────────────────

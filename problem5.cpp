@@ -5,93 +5,58 @@
  * 이름:
  *
  * ─────────────────────────────────────────────────────────────
- * Order class 의 member function body 를 구현하세요.
+ * 아래 요구사항을 읽고 Order 클래스를 처음부터 구현하세요.
+ * 모든 멤버 함수는 클래스 선언부 바깥에서 정의하세요.
  *
- * 요구 사항:
- *  - private data member 로 내부 상태를 보호합니다.
- *  - 생성자에서 this-> 를 사용하여 parameter 와 member 를 구분합니다.
- *  - 생성자에서 totalOrders 를 증가시킵니다.
- *  - updateQuantity: quantity <= 0 이면 거부하고 false 반환.
- *    아니면 this->quantity 를 업데이트하고 true 반환.
- *  - 상태를 변경하지 않는 함수는 반드시 const 로 선언합니다.
- *  - 모든 함수는 class 외부에서 Order:: 를 이용하여 정의합니다.
+ * ─────────────────────────────────────────────────────────────
+ * [데이터 멤버] (모두 private)
  *
- * printInfo() 출력 형식:
- *   "Order <orderId>: qty = <quantity>, unitPrice = <unitPrice>, total = <totalPrice>"
- *   예) Order 1: qty = 3, unitPrice = 500, total = 1500
+ *   orderId     (int)          : 주문 번호.
+ *   quantity    (int)          : 주문 수량. updateQuantity 함수로만 변경됨.
+ *   unitPrice   (int)          : 단가.
+ *   totalOrders (int)          : 지금까지 생성된 Order 객체의 총 수.
+ *                                [중요] 모든 객체가 공유하는 클래스 전체 변수.
  *
- * 주의: class 선언부(중괄호 안)는 수정하지 마세요.
+ * [생성자]
+ *
+ *   Order(orderId, quantity, unitPrice) 으로 세 멤버를 초기화.
+ *   - 생성할 때마다 totalOrders 를 1 증가시키세요.
+ *
+ * [멤버 함수] — 상태를 변경하지 않는 함수에는 반드시 const 를 붙이세요.
+ *             모든 함수는 클래스 바깥에서 정의하세요.
+ *
+ *   getOrderId()    int 반환          [중요] 객체 상태를 바꾸지 않음.
+ *   getQuantity()   int 반환          [중요] 객체 상태를 바꾸지 않음.
+ *   getUnitPrice()  int 반환          [중요] 객체 상태를 바꾸지 않음.
+ *   totalPrice()    int 반환          quantity × unitPrice. [중요] 객체 상태를 바꾸지 않음.
+ *
+ *   updateQuantity(int quantity)      bool 반환
+ *     파라미터 quantity 가 0 이하이면 아무것도 바꾸지 않고 false 를 반환한다.
+ *     0 초과이면 this->quantity 를 업데이트하고 true 를 반환한다.
+ *
+ *   getTotalOrders()   int 반환   totalOrders 반환.
+ *
+ *   printInfo()        아래 형식으로 출력. 객체 상태를 바꾸지 않음.
+ *     Order <orderId>: qty = <quantity>, unitPrice = <unitPrice>, total = <totalPrice>
+ *     예) Order 1: qty = 3, unitPrice = 500, total = 1500
+ *
+ * runner 함수(runProblem5)는 수정하지 마세요.
  * ─────────────────────────────────────────────────────────────
  */
 #include <iostream>
 using namespace std;
 
+// ── Order 클래스를 선언하세요 ──────────────────────────────────
 class Order {
-private:
-    int orderId;
-    int quantity;
-    int unitPrice;
-    static int totalOrders;   // 생성된 Order 의 수 (모든 object 가 공유)
-public:
-    Order(int orderId, int quantity, int unitPrice);
-
-    int getOrderId() const;
-    int getQuantity() const;
-    int getUnitPrice() const;
-    int totalPrice() const;          // quantity * unitPrice
-
-    bool updateQuantity(int quantity); // quantity <= 0 이면 false
-
-    static int getTotalOrders();
-
-    void printInfo() const;
+    // TODO
 };
 
-// static member 정의 (수정하지 마세요)
-int Order::totalOrders = 0;
+// TODO: totalOrders 변수를 0 으로 초기화하세요.
 
-// TODO: 아래 함수들의 body 를 구현하세요.
+// TODO: 멤버 함수를 구현하세요.
 
-Order::Order(int orderId, int quantity, int unitPrice) {
-    // TODO: this-> 를 사용하여 각 member 를 초기화하고, totalOrders 를 1 증가시키세요.
-}
 
-int Order::getOrderId() const {
-    // TODO
-    return 0;
-}
-
-int Order::getQuantity() const {
-    // TODO
-    return 0;
-}
-
-int Order::getUnitPrice() const {
-    // TODO
-    return 0;
-}
-
-int Order::totalPrice() const {
-    // TODO: quantity * unitPrice 를 반환하세요.
-    return 0;
-}
-
-bool Order::updateQuantity(int quantity) {
-    // TODO: quantity <= 0 이면 아무것도 하지 않고 false 를 반환하세요.
-    //       아니면 this->quantity 를 업데이트하고 true 를 반환하세요.
-    return false;
-}
-
-int Order::getTotalOrders() {
-    // TODO
-    return 0;
-}
-
-void Order::printInfo() const {
-    // TODO: 위의 형식으로 출력하세요.
-}
-
-// ── runner (수정하지 마세요) ───────────────────────────────────────────
+// ── runner (수정하지 마세요) ───────────────────────────────────
 void runProblem5(istream& in) {
     int n;
     in >> n;
@@ -128,3 +93,4 @@ void runProblem5(istream& in) {
 
     for (int i = 0; i < n; i++) delete orders[i];
 }
+// ─────────────────────────────────────────────────────────────

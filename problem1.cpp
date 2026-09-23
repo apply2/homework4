@@ -5,93 +5,59 @@
  * 이름:
  *
  * ─────────────────────────────────────────────────────────────
- * struct 와 class 의 차이를 직접 확인하는 문제입니다.
+ * 아래 두 타입을 직접 정의하고 구현하세요.
  *
- *  - struct 의 member 는 기본적으로 public  → 외부에서 직접 접근 가능
- *  - class  의 member 는 기본적으로 private → member function 을 통해서만 접근 가능
+ * [Part 1] struct Point
+ *   - struct 키워드를 사용하세요.
+ *   - data member : int x, int y
+ *   - void print() const          → "Point(x, y)" 형식으로 출력  예) Point(3, 4)
+ *   - int distanceSquared() const → x*x + y*y 를 반환합니다.
+ *   ※ 기본 접근 제어자가 무엇인지 생각해 보세요.
  *
- * 아래 struct Point 와 class Rectangle 의 TODO 함수를 구현하세요.
+ * [Part 2] class Rectangle
+ *   - class 키워드를 사용하세요.
+ *   - private data member : int width, int height
+ *   - public member function :
+ *       Rectangle(int width, int height) : 멤버 변수를 초기화합니다.
+ *       int area() const        → width * height 를 반환합니다.
+ *       int perimeter() const   → 2*(width+height) 를 반환합니다.
+ *       void print() const      → "Rectangle(width x height)" 형식으로 출력  예) Rectangle(5 x 3)
+ *       void scale(int factor)  → width, height 에 factor 를 곱합니다.
+ *   ※ 기본 접근 제어자가 무엇인지 생각해 보세요.
+ *
+ * runner 함수(runProblem1)는 수정하지 마세요.
  * ─────────────────────────────────────────────────────────────
  */
 #include <iostream>
+#include <type_traits>
 using namespace std;
 
-// ── struct Point: passive data structure (members public by default) ──
-struct Point {
-    int x;   // public by default: 외부에서 직접 접근 가능
-    int y;
+// ── struct Point 를 구현하세요 ───────────────────────────────────
 
-    // TODO: "Point(x, y)" 형식으로 출력하세요.  예) Point(3, 4)
-    void print() const;
 
-    // TODO: x*x + y*y 를 반환하세요.
-    int distanceSquared() const;
-};
+// ── class Rectangle 을 구현하세요 ────────────────────────────────
 
-// ── class Rectangle: active object (members private by default) ───────
-class Rectangle {
-private:
-    int width;
-    int height;
-public:
-    // TODO: this->width 와 this->height 를 이용하여 초기화하세요.
-    Rectangle(int width, int height);
 
-    // TODO: width * height 를 반환하세요.  (const 필수)
-    int area() const;
+// ── runner (수정하지 마세요) ───────────────────────────────────
+template<typename T, typename = void>
+struct has_public_width : false_type {};
+template<typename T>
+struct has_public_width<T, void_t<decltype(declval<T>().width)>> : true_type {};
 
-    // TODO: 2 * (width + height) 를 반환하세요.  (const 필수)
-    int perimeter() const;
+template<typename T, typename = void>
+struct has_public_height : false_type {};
+template<typename T>
+struct has_public_height<T, void_t<decltype(declval<T>().height)>> : true_type {};
 
-    // TODO: "Rectangle(width x height)" 형식으로 출력하세요.  예) Rectangle(5 x 3)
-    //       (const 필수)
-    void print() const;
+static_assert(!has_public_width<Rectangle>::value,  "Rectangle::width 는 private 이어야 합니다.");
+static_assert(!has_public_height<Rectangle>::value, "Rectangle::height 는 private 이어야 합니다.");
 
-    // TODO: width 와 height 각각에 factor 를 곱하세요.
-    void scale(int factor);
-};
-
-// ── struct Point 구현 ─────────────────────────────────────────────────
-void Point::print() const {
-    // TODO
-}
-
-int Point::distanceSquared() const {
-    // TODO
-    return 0;
-}
-
-// ── class Rectangle 구현 ─────────────────────────────────────────────
-Rectangle::Rectangle(int width, int height) {
-    // TODO: this-> 를 반드시 사용하세요.
-}
-
-int Rectangle::area() const {
-    // TODO
-    return 0;
-}
-
-int Rectangle::perimeter() const {
-    // TODO
-    return 0;
-}
-
-void Rectangle::print() const {
-    // TODO
-}
-
-void Rectangle::scale(int factor) {
-    // TODO
-}
-
-// ── runner (수정하지 마세요) ───────────────────────────────────────────
 void runProblem1(istream& in) {
     int px, py, rw, rh, factor;
     in >> px >> py >> rw >> rh >> factor;
 
     cout << "=== Problem 1: struct vs class ===" << "\n";
 
-    // struct 의 member 는 기본적으로 public → p.x, p.y 에 직접 접근
     cout << "[Part 1] struct Point" << "\n";
     Point p;
     p.x = px;
@@ -100,7 +66,6 @@ void runProblem1(istream& in) {
     cout << "distanceSquared = " << p.distanceSquared() << "\n";
     cout << "x = " << p.x << ", y = " << p.y << "\n";
 
-    // class 의 member 는 기본적으로 private → member function 으로만 접근
     cout << "[Part 2] class Rectangle" << "\n";
     Rectangle r(rw, rh);
     r.print();
@@ -113,3 +78,4 @@ void runProblem1(istream& in) {
     cout << "area = " << r.area() << "\n";
     cout << "perimeter = " << r.perimeter() << "\n";
 }
+// ─────────────────────────────────────────────────────────────
