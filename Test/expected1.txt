@@ -1,0 +1,64 @@
+=== Problem 1: struct vs class ===
+[Part 1] struct Point
+Point(3, 4)
+distanceSquared = 25
+x = 3, y = 4
+[Part 2] class Rectangle
+Rectangle(5 x 3)
+area = 15
+perimeter = 16
+[Part 3] scale(2)
+Rectangle(10 x 6)
+area = 60
+perimeter = 32
+=== Problem 2: Encapsulation and this ===
+[Part 1] Initial state
+balance = 1000
+[Part 2] deposit(500)
+result = true
+balance = 1500
+[Part 3] deposit(-100)
+result = false
+balance = 1500
+[Part 4] withdraw(300)
+result = true
+balance = 1200
+[Part 5] withdraw(2000)
+result = false
+balance = 1200
+=== Problem 3: Static Members ===
+[Part 1] Before registration
+totalStudents = 0
+[Part 2] Register students
+Student 0: score = 85
+Student 1: score = 60
+Student 2: score = 90
+totalStudents after registration = 3
+[Part 3] Access via class name
+Student::getTotalStudents() = 3
+=== Problem 4: const Member Functions ===
+[Part 1] Initial state
+Apple: price = 200, quantity = 10, total = 2000
+[Part 2] const object read-only access
+name = Apple
+price = 200
+quantity = 10
+totalValue = 2000
+[Part 3] setPrice(180)
+Apple: price = 180, quantity = 10, total = 1800
+[Part 4] restock(5)
+Apple: price = 180, quantity = 15, total = 2700
+=== Problem 5: Integrated ===
+[Part 1] Create orders
+Order 1: qty = 3, unitPrice = 500, total = 1500
+Order 2: qty = 5, unitPrice = 300, total = 1500
+[Part 2] Static state
+Order::getTotalOrders() = 2
+[Part 3] Invalid update
+updateQuantity(-1) = false
+Order 1: qty = 3, unitPrice = 500, total = 1500
+[Part 4] Valid update
+updateQuantity(2) = true
+Order 2: qty = 2, unitPrice = 300, total = 600
+[Part 5] Final static state
+Order::getTotalOrders() = 2
