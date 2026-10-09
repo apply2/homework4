@@ -1,8 +1,8 @@
 /*
  * Problem 4: const Member Functions
  *
- * 학번:
- * 이름:
+ * 학번:202302603
+ * 이름:이지원
  *
  * ─────────────────────────────────────────────────────────────
  * 아래 요구사항을 읽고 Book 클래스를 처음부터 구현하세요.
@@ -61,9 +61,48 @@ using namespace std;
 
 // ── Book 클래스를 구현하세요 ───────────────────────────────────
 class Book {
-    // TODO
-};
+    private:
+    const String title;
+    const String author;
+    int price;
+    int stock;
 
+    public:
+    Book(String title, String author, int price, int stock) {};
+
+    String getTitle() const {
+        return title;
+    }
+    String getAuthor() const {
+        return author;
+    }
+    int getPrice() const {
+        return price;
+    }
+    int getStock() const {
+        return stock;
+    }
+    int getTotalValue() {
+        const reult = price*stock;
+        return result;
+    }
+    setPrice(int p) {
+        price = p;
+    }
+    restock(int n) {
+        stock += n;
+    }
+    bool sell(int n) {
+        if (stock >= n) {
+            stock -= n;
+            return true;
+        }
+        else return false;
+    }
+    void printInfo() {
+        std::cout << title + " / " << author << " | price: " << price << " | stock: " << stock << " | total: " << totalValue << "\n";
+    }
+};
 // ── runner (수정하지 마세요) ───────────────────────────────────
 void runProblem4(istream& in) {
     string title, author;

@@ -1,8 +1,8 @@
 /*
  * Problem 3: Static Members
  *
- * 학번:
- * 이름:
+ * 학번:202302603
+ * 이름:이지원
  *
  * ─────────────────────────────────────────────────────────────
  * 아래 요구사항에 맞게 class Student 를 직접 정의하고 구현하세요.
@@ -30,12 +30,19 @@ using namespace std;
 
 // ── Student 클래스를 구현하세요 ──────────────────────────────────
 class Student {
+private:
+int score;
+int studentNumber = 0;
 public:
-    void setScore(int newScore) {}
-    int getScore() const { return 0; }
-    int getStudentNumber() const { return 0; }
-    void registerStudent() {}
-    int getTotalStudents() const { return 0; }
+static int totalStudents = 0;
+    void setScore(int newScore) {score = newScore;}
+    int getScore() const { return score; }
+    int getStudentNumber() const { return studentNumber; }
+    void registerStudent() {
+     ++totalStudents;
+     studentNumber = totalStudents;
+}
+    int getTotalStudents() const { return totalStudents; }
 };
 
 // ── runner (수정하지 마세요) ───────────────────────────────────

@@ -1,8 +1,8 @@
 /*
  * Problem 2: Encapsulation and this Pointer
  *
- * 학번:
- * 이름:
+ * 학번:202302603
+ * 이름:이지원
  *
  * ─────────────────────────────────────────────────────────────
  * 아래 class 선언을 참고하여 각 member function 을 class 외부에서 구현하세요.
@@ -36,12 +36,29 @@ public:
 };
 
 // TODO: setBalance 를 구현하세요.
-
+void setBalance(int balance){
+    balance = balance;
+}
 // TODO: deposit 를 구현하세요.
-
+bool deposit(int amount){
+    if (amount > 0) {
+        balance += amount;
+        return true;
+    }
+    else return false;
+}
 // TODO: withdraw 를 구현하세요.
-
+bool withdraw(int amount){
+    if(amount > 0 && amount <= balance) {
+        balance -= amount;
+        return true;
+    }
+    return false;
+}
 // TODO: getBalance 를 구현하세요.
+int getBalance() const {
+    return balance;
+}
 
 // ── runner (수정하지 마세요) ───────────────────────────────────
 void runProblem2(istream& in) {

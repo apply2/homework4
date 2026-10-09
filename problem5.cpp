@@ -1,8 +1,8 @@
 /*
  * Problem 5: Integrated
  *
- * 학번:
- * 이름:
+ * 학번:202302603
+ * 이름:이지원
  *
  * ─────────────────────────────────────────────────────────────
  * 아래 요구사항을 읽고 Order 클래스를 처음부터 구현하세요.
@@ -48,13 +48,46 @@ using namespace std;
 
 // ── Order 클래스를 선언하세요 ──────────────────────────────────
 class Order {
-    // TODO
+    private:
+    int orderId, quantity, unitPrice;
+    static int totalOrders;
+
+    public:
+    Order(int orderId, int quantity, int unitPrice) {totalOrders++;};
+
+    int getOrderId() const;
+    int getQuantity() const;
+    int getUnitPrice() const;
+    int totalPrice() const;
+    bool updateQuantity(int quantity);
+    void printInfo() const;
 };
 
 // TODO: totalOrders 변수를 0 으로 초기화하세요.
-
+totalOrders = 0;
 // TODO: 멤버 함수를 구현하세요.
-
+int Order::getOrderId() const {
+    return orderId;
+}
+int Order::getQuantity() const {
+    return quantity;
+}
+int Order::getUnitPrice() const {
+    return unitPrice;
+}
+int Order::totalPrice() const {
+    return unitPrice*quantity;
+}
+bool Order::updateQuantity(int quantity) {
+    if (quantity > 0) {
+        this->quantity = quantity;
+        return true;
+    }
+    else return false;
+}
+void printInfo() const {
+    std::cout << "Order " << orderId << ": qty = " << quantity << ", unitPrice = " << unitPrice << ", total = " << totalPrice << "\n";
+}
 
 // ── runner (수정하지 마세요) ───────────────────────────────────
 void runProblem5(istream& in) {

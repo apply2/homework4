@@ -1,8 +1,8 @@
 /*
  * Problem 1: struct vs class
  *
- * 학번:
- * 이름:
+ * 학번:202302603
+ * 이름:이지원
  *
  * ─────────────────────────────────────────────────────────────
  * 아래 두 타입을 직접 정의하고 구현하세요.
@@ -33,10 +33,36 @@
 using namespace std;
 
 // ── struct Point 를 구현하세요 ───────────────────────────────────
-
+struct Point {
+    int x, y;
+    void printInfo() const {
+        std::cout << "Point(" << x << ", " << y << ")" <<"\n";
+    }
+    int distanceSquared() const {
+        return x*x + y*y;
+    }
+}
 
 // ── class Rectangle 을 구현하세요 ────────────────────────────────
-
+class Rectangle {
+    private:
+    int width, height;
+    public:
+    Rectangle(int width, int height);
+    int area() const {
+        return width*height;
+    }
+    int perimeter() const {
+        return 2*(width*height);
+    }
+    void print() const {
+        std::cout << "Rectangle(" << width * height << ")" << "\n";
+    }
+    void scale(int factor) {
+        width  *= factor;
+        height *= height;
+    }
+}
 
 // ── runner (수정하지 마세요) ───────────────────────────────────
 template<typename T, typename = void>
